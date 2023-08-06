@@ -1,0 +1,10 @@
+node
+{
+
+stage('stage1')
+{sh 'echo hi_jenkins'}
+
+stage('stage2')
+{sh 'echo executing_unit_test_framework'}
+
+}
