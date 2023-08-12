@@ -1,0 +1,27 @@
+pipeline
+{
+agent any
+stages
+{ stage('scm_checkout')
+  {steps {git branch: 'master', url: 'https://github.com/pkumbhre/maven-project.git'}}
+  
+  stage('execute unit test')
+  {steps {withMaven(globalMavenSettingsConfig: 'fdf275d4-f2a4-4fb4-9ae9-ad81b44a9f78', jdk: 'LOCALJDK', maven: 'LOCALMVN', mavenSettingsConfig: '8782b035-171f-4ccc-8f28-f6b6f0d24ac1', traceability: true) 
+  {
+    sh 'mvn test'
+}
+  }}
+  
+  stage('run sonar and build the code')
+  {steps {withSonarQubeEnv(credentialsId: 'sonar') {withMaven(globalMavenSettingsConfig: 'fdf275d4-f2a4-4fb4-9ae9-ad81b44a9f78', jdk: 'LOCALJDK', maven: 'LOCALMVN', mavenSettingsConfig: '8782b035-171f-4ccc-8f28-f6b6f0d24ac1', traceability: true)
+  {
+    sh 'mvn sonar:sonar package' }
+ }}
+
+
+
+
+}
+
+}
+}
