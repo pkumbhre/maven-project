@@ -24,7 +24,7 @@ stages
 
     stage('docker login and push to Docker Registry')
     {steps { withDockerRegistry(credentialsId: 'DockerHubAccount', url: 'https://index.docker.io/v1/')
-    {sh 'docker push pradeepkumbhre/tomcat2023:latest}
+    {sh 'docker push pradeepkumbhre/tomcat2023:latest'}
     }}
 
 //    stage('Deploy to tomcat')
