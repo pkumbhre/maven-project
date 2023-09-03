@@ -19,6 +19,8 @@ stages
     {steps{withMaven(globalMavenSettingsConfig: 'fdf275d4-f2a4-4fb4-9ae9-ad81b44a9f78', jdk: 'LOCALJDK', maven: 'LOCALMVN', mavenSettingsConfig: '8782b035-171f-4ccc-8f28-f6b6f0d24ac1', traceability: true) {
     sh 'mvn package'
 } }}
+    stage('docker image creation')
+    {steps {sh 'docker build -t pradeepkumbhre/tomcat2023:latest .'}}
 
 //    stage('Deploy to tomcat')
 //    {steps{sshagent(['tomcat=cicd']) {
