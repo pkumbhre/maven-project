@@ -20,11 +20,9 @@ stages
     sh 'mvn package'
 } }}
 
-    stage('Deploy to tomcat')
-    {steps{sshagent(['tomcat=cicd']) {
-    sh 'scp -o StrictHostKeyChecking=no  */*/*.war ec2-user@3.122.59.181:/usr/share/tomcat/webapps/'
-}
-}
+//    stage('Deploy to tomcat')
+//    {steps{sshagent(['tomcat=cicd']) {
+//    sh 'scp -o StrictHostKeyChecking=no  */*/*.war ec2-user@3.122.59.181:/usr/share/tomcat/webapps/'}}
      
     }
 
